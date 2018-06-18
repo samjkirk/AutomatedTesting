@@ -34,9 +34,17 @@ public class TheDemoSite {
 	public void createUser() {
 		driver.manage().window().maximize();
 		String url = "http://thedemosite.co.uk/";
+		String username = "yetAnotherUser";
+		String password = "password";
 		driver.navigate().to(url);
 		driver.findElement(By.linkText("3. Add a User")).click();
-		assertEquals("http://thedemosite.co.uk/addauser.php", driver.getCurrentUrl());
+		WebElement checkElement = driver.findElement(By.name("username"));
+		checkElement.click();
+		checkElement.sendKeys(username);
+		checkElement = driver.findElement(By.name("password"));
+		checkElement.click();
+		checkElement.sendKeys(password);
+		driver.findElement(By.name("FormsButton2")).click();
 	}
 	
 	@After
