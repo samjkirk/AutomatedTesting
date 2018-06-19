@@ -35,7 +35,7 @@ public class ShoppingWebsite {
 	
 	@Test
 	public void searchForItem() {
-		ExtentTest test1 = shoppingsiteREPORT.startTest("Attempt to search for 'Dress'");
+		ExtentTest test1 = shoppingsiteREPORT.startTest("Attempt to search for 'Printed Dress'");
 		test1.log(LogStatus.INFO, "Browser started");
 		WebElement searchbar = driver.findElement(By.id("search_query_top"));
 		List<String> productNames = new ArrayList<String>();
@@ -54,7 +54,7 @@ public class ShoppingWebsite {
 		
 		try {
 		assertTrue(productNames.contains(search));
-		test1.log(LogStatus.PASS, "Search contained items conataining 'Dress'");
+		test1.log(LogStatus.PASS, "Search items conataining 'Printed Dress'");
 		} 
 		catch (AssertionError e) {
 			test1.log(LogStatus.FAIL, "Search failed");
