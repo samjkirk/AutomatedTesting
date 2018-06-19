@@ -31,10 +31,10 @@ public class TheDemoSite {
 	}
 	
 	@Test
-	public void createUser() {
+	public void createUserAndSignIn() {
 		driver.manage().window().maximize();
 		String url = "http://thedemosite.co.uk/";
-		String username = "yetAnotherUser";
+		String username = "skUser1";
 		String password = "password";
 		driver.navigate().to(url);
 		driver.findElement(By.linkText("3. Add a User")).click();
@@ -44,7 +44,19 @@ public class TheDemoSite {
 		checkElement = driver.findElement(By.name("password"));
 		checkElement.click();
 		checkElement.sendKeys(password);
-		driver.findElement(By.name("FormsButton2")).click();
+		checkElement = driver.findElement(By.name("FormsButton2"));
+		checkElement.click();
+		driver.findElement(By.linkText("4. Login")).click();
+		checkElement = driver.findElement(By.name("username"));
+		checkElement.click();
+		checkElement.sendKeys(username);
+		checkElement = driver.findElement(By.name("password"));
+		checkElement.click();
+		checkElement.sendKeys(password);
+		checkElement = driver.findElement(By.name("FormsButton2"));
+		checkElement.click();
+		checkElement = driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/big/blockquote/blockquote/font/center/b"));
+		assertEquals("**Successful Login**", checkElement.getText());
 	}
 	
 	@After
