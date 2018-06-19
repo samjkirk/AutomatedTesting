@@ -7,14 +7,14 @@ public class home {
 	
 	@FindBy(xpath = "//*[@id=\"menu-item-141\"]/a") 
 	private WebElement droppableButton;
+	@FindBy(xpath = "//*[@id=\"menu-item-142\"]/a") 
+	private WebElement selectableButton;
 
 	public void clickDroppable() {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 		droppableButton.click();
+	}
+	
+	public void clickSelectable() {
+		selectableButton.click();
 	}
 }
