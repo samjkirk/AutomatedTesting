@@ -120,6 +120,26 @@ public class demoqa {
 		}
 	}
 	
+	@Test
+	public void autocompleteTest() throws InterruptedException {
+		ExtentTest test5 = demoqaREPORT.startTest("Testing the functionality of 'Autocomplete' widget");
+		test5.log(LogStatus.INFO, "Browser started");
+		demoqaHomePage.clickWidget(2);
+		
+		autocomplete autoWidget = PageFactory.initElements(driver, autocomplete.class);
+		String value = autoWidget.search();
+		
+		try {
+			assertEquals("Scala", value);
+			test5.log(LogStatus.PASS, "Autocomplete successful");
+		} catch (AssertionError e) {
+			test5.log(LogStatus.FAIL, "Autocomplete unsuccessful");
+			fail();
+		} finally {
+			test5.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+		}
+	}
+	
 	@After
 	public void after() {
 		driver.close();
