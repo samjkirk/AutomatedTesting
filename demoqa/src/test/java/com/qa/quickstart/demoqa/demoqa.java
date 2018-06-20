@@ -140,6 +140,29 @@ public class demoqa {
 		}
 	}
 	
+	@Test
+	public void datecheckerTest() {
+		ExtentTest test6 = demoqaREPORT.startTest("Testing the functionality of 'Datepicker' widget");
+		test6.log(LogStatus.INFO, "Browser started");
+		demoqaHomePage.clickWidget(3);
+		
+		datepicker dateWidget = PageFactory.initElements(driver, datepicker.class);
+		dateWidget.showCalender();
+		dateWidget.selectDate();
+		String result = dateWidget.getDate();
+		test6.log(LogStatus.INFO, "Selected date: " + result);
+		
+		try {
+			assertEquals("May 24, 2018", result);
+			test6.log(LogStatus.PASS, "Datepicker successful!");
+		} catch (AssertionError e) {
+			test6.log(LogStatus.FAIL, "Datepicker unsuccessful!");
+			fail();
+		} finally {
+			test6.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+		}
+	}
+	
 	@After
 	public void after() {
 		driver.close();
