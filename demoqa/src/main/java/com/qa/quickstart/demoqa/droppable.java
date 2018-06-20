@@ -14,6 +14,7 @@ public class droppable {
 	
 	@FindBy(xpath = "//*[@id=\"draggableview\"]")
 	private WebElement draggableBox;
+	
 	@FindBy(xpath = "//*[@id=\"droppableview\"]")
 	private WebElement droppableBox;
 	
