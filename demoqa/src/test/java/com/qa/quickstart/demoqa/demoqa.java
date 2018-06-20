@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -15,11 +16,11 @@ import org.junit.BeforeClass;
 import org.junit.After;
 
 public class demoqa {
-	ChromeDriver driver;
 	static ExtentReports demoqaREPORT;
+	List<String> currentlySelected = new ArrayList<String>();
+	ChromeDriver driver;
 	home demoqaHomePage;
 	selectable selectablePage;
-	List<String> currentlySelected = new ArrayList<String>();
 	
 	@BeforeClass
 	public static void init() {
@@ -97,10 +98,31 @@ public class demoqa {
 		}
 	}
 	
+	@Test
+	public void accordionTest() {
+		ExtentTest test4 = demoqaREPORT.startTest("Testing the functionality of 'Accordion' widget");
+		test4.log(LogStatus.INFO, "Browser started");
+		demoqaHomePage.clickWidget(1);
+		
+		accordion accWidget = PageFactory.initElements(driver, accordion.class);
+		accWidget.selectIndividual();
+		test4.log(LogStatus.INFO, "All items succesfully selected");
+		WebElement active = driver.findElement(By.className("ui-accordion-header-active"));
+		
+		try {
+			assertEquals(active, driver.findElement(By.xpath("//*[@id=\"ui-id-10\"]")));
+			test4.log(LogStatus.PASS, "Accordion test successful!");
+		} catch (AssertionError e) {
+			test4.log(LogStatus.FAIL, "Accordion test unsuccessful!");
+			fail();
+		} finally {
+			test4.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+		}
+	}
+	
 	@After
 	public void after() {
 		driver.close();
-		
 		demoqaREPORT.flush();
 	}
 }
