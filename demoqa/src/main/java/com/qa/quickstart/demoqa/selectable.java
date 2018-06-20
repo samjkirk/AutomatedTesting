@@ -1,5 +1,9 @@
 package com.qa.quickstart.demoqa;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,6 +46,16 @@ public class selectable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public List<String> findCurrentlySelected() {
+		List<String> itemText = new ArrayList<String>();
+		WebElement box = driver.findElement(By.xpath("//*[@id=\"tabs-1\"]/div"));
+		List<WebElement> selectedElements = box.findElements(By.className("ui-selected"));
+		for (WebElement we : selectedElements) {
+			itemText.add(we.getText());
+		}
+		return itemText;
 	}
 	
 }
