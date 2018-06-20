@@ -18,6 +18,8 @@ public class demoqa {
 	ChromeDriver driver;
 	static ExtentReports demoqaREPORT;
 	home demoqaHomePage;
+	selectable selectablePage;
+	List<String> currentlySelected = new ArrayList<String>();
 	
 	@BeforeClass
 	public static void init() {
@@ -32,6 +34,7 @@ public class demoqa {
 		String url = "http://demoqa.com/";
 		driver.navigate().to(url);
 		demoqaHomePage = PageFactory.initElements(driver, home.class);
+		selectablePage = PageFactory.initElements(driver, selectable.class);
 	}
 	
 	@Test
@@ -55,24 +58,42 @@ public class demoqa {
 	}
 	
 	@Test
-	public void selectableTest() {
-		ExtentTest test2 = demoqaREPORT.startTest("Testing the functionality of 'Droppable'");
+	public void selectableTestIndividual() {
+		ExtentTest test2 = demoqaREPORT.startTest("Testing the functionality of 'Selectable' (Individual)");
 		test2.log(LogStatus.INFO, "Browser started");
-		List<String> currentlySelected = new ArrayList<String>();
 		
-		selectable selectablePage = PageFactory.initElements(driver, selectable.class);
 		demoqaHomePage.clickSelectable();
-		selectablePage.selectIndividual();
+		selectablePage.select(false);
 		currentlySelected = selectablePage.findCurrentlySelected();
 		
 		try {
 			assertTrue(currentlySelected.contains("Item 7"));
-			test2.log(LogStatus.PASS, "Select successful!");
+			test2.log(LogStatus.PASS, "Individual select successful!");
 		} catch (AssertionError e) {
-			test2.log(LogStatus.FAIL, "Select unsuccessful!");
+			test2.log(LogStatus.FAIL, "Individual select unsuccessful!");
 			fail();
 		} finally {
 			test2.log(LogStatus.INFO, "Current URL:" + driver.getCurrentUrl());
+		}
+	}
+	
+	@Test
+	public void selectableTestMultiple() {
+		ExtentTest test3 = demoqaREPORT.startTest("Testing the functionality of 'Selectable' (Multiple)");
+		test3.log(LogStatus.INFO, "Browser started");
+		
+		demoqaHomePage.clickSelectable();
+		selectablePage.select(true);
+		currentlySelected = selectablePage.findCurrentlySelected();
+		
+		try {
+			assertEquals(7, currentlySelected.size());
+			test3.log(LogStatus.PASS, "Multiple select successful!");
+		} catch (AssertionError e) {
+			test3.log(LogStatus.FAIL, "Multiple select unsuccessful!");
+			fail();
+		} finally {
+			test3.log(LogStatus.INFO, "Current URL:" + driver.getCurrentUrl());
 		}
 	}
 	

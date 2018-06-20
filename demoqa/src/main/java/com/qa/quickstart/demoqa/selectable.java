@@ -31,20 +31,30 @@ public class selectable {
 	@FindBy(xpath = "//*[@id=\"selectable\"]/li[7]")
 	private WebElement item7;
 
-	public void selectIndividual() {
-		try {
-			Actions act = new Actions(driver);
-			act.moveToElement(item1).click().
-				moveToElement(item2).click().
-				moveToElement(item3).click().
-				moveToElement(item4).click().
-				moveToElement(item5).click().
-				moveToElement(item6).click().
-				moveToElement(item7).click().perform();
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void select(Boolean multiple) {
+		Actions act = new Actions(driver);
+		if (!multiple) {
+			try {
+				act.moveToElement(item1).click().
+					moveToElement(item2).click().
+					moveToElement(item3).click().
+					moveToElement(item4).click().
+					moveToElement(item5).click().
+					moveToElement(item6).click().
+					moveToElement(item7).click().perform();
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				act.moveToElement(item1).clickAndHold().moveToElement(item7).release().perform();
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -55,6 +65,7 @@ public class selectable {
 		for (WebElement we : selectedElements) {
 			itemText.add(we.getText());
 		}
+		System.out.println(itemText);
 		return itemText;
 	}
 	
