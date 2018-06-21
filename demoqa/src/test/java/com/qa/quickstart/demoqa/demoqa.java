@@ -203,6 +203,27 @@ public class demoqa {
 		}
 	}
 	
+	@Test
+	public void slideTest() {
+		ExtentTest test8 = demoqaREPORT.startTest("Testing the functionality of 'Slide' widget");
+		test8.log(LogStatus.INFO, "Browser started");
+		demoqaHomePage.clickWidget(5);
+		
+		slider slideWidget = PageFactory.initElements(driver, slider.class);
+		slideWidget.slide();
+		test8.log(LogStatus.INFO, "Current value: " + slideWidget.getAmount());
+		
+		try {
+			assertEquals("6", slideWidget.getAmount());
+			test8.log(LogStatus.PASS, "Slide successful");
+		} catch (AssertionError e) {
+			test8.log(LogStatus.FAIL, "Slide unsuccessful");
+			fail();
+		} finally {
+			test8.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl() + " | Current value: " + slideWidget.getAmount());
+		}
+	}
+	
 	@After
 	public void after() {
 		driver.quit();
