@@ -11,23 +11,23 @@ public class home {
 		this.driver = driver;
 	}
 	
-	@FindBy(xpath = "//*[@id=\"menu-item-141\"]/a") 
+	@FindBy(id = "menu-item-141") 
 	private WebElement droppableButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-142\"]/a") 
+	@FindBy(id = "menu-item-142") 
 	private WebElement selectableButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-144\"]/a")
+	@FindBy(id = "menu-item-144")
 	private WebElement accordionButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-145\"]/a")
+	@FindBy(id = "menu-item-145")
 	private WebElement autoCompleteButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-146\"]/a")
+	@FindBy(id = "menu-item-146")
 	private WebElement datePickerButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-147\"]/a")
+	@FindBy(id = "menu-item-147")
 	private WebElement menuButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-97\"]/a")
+	@FindBy(id = "menu-item-97")
 	private WebElement sliderButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-98\"]/a")
+	@FindBy(id = "menu-item-98")
 	private WebElement tabsButton;
-	@FindBy(xpath = "//*[@id=\"menu-item-99\"]/a")
+	@FindBy(id = "menu-item-99")
 	private WebElement tooltipButton;
 
 	public void clickDroppable() {

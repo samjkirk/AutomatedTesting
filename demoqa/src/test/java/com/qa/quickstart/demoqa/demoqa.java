@@ -52,10 +52,10 @@ public class demoqa {
 			test1.log(LogStatus.PASS, "Drop successful!");
 		} catch (AssertionError e) {
 			test1.log(LogStatus.FAIL, "Drop unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test1.log(LogStatus.INFO, "Current URL:" + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -73,10 +73,10 @@ public class demoqa {
 			test2.log(LogStatus.PASS, "Individual select successful!");
 		} catch (AssertionError e) {
 			test2.log(LogStatus.FAIL, "Individual select unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test2.log(LogStatus.INFO, "Current URL:" + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -94,10 +94,10 @@ public class demoqa {
 			test3.log(LogStatus.PASS, "Multiple select successful!");
 		} catch (AssertionError e) {
 			test3.log(LogStatus.FAIL, "Multiple select unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test3.log(LogStatus.INFO, "Current URL:" + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -117,10 +117,10 @@ public class demoqa {
 			test4.log(LogStatus.PASS, "Accordion test successful!");
 		} catch (AssertionError e) {
 			test4.log(LogStatus.FAIL, "Accordion test unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test4.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -138,10 +138,10 @@ public class demoqa {
 			test5.log(LogStatus.PASS, "Autocomplete successful");
 		} catch (AssertionError e) {
 			test5.log(LogStatus.FAIL, "Autocomplete unsuccessful");
-			driver.quit();
 			fail();
 		} finally {
 			test5.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -162,10 +162,10 @@ public class demoqa {
 			test6.log(LogStatus.PASS, "Datepicker successful!");
 		} catch (AssertionError e) {
 			test6.log(LogStatus.FAIL, "Datepicker unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test6.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -183,7 +183,6 @@ public class demoqa {
 			test7.log(LogStatus.PASS, "Menu hover successful!");
 		} catch (AssertionError e) {
 			test7.log(LogStatus.FAIL, "Menu hover unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test7.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
@@ -196,10 +195,10 @@ public class demoqa {
 			test7.log(LogStatus.PASS, "Menu link successful!");
 		} catch (AssertionError e) {
 			test7.log(LogStatus.FAIL, "Menu link unsuccessful!");
-			driver.quit();
 			fail();
 		} finally {
 			test7.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
@@ -221,6 +220,28 @@ public class demoqa {
 			fail();
 		} finally {
 			test8.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl() + " | Current value: " + slideWidget.getAmount());
+			driver.quit();
+		}
+	}
+	
+	@Test
+	public void tabsTest() {
+		ExtentTest test9 = demoqaREPORT.startTest("Testing the functionality of 'Tabs' widget");
+		test9.log(LogStatus.INFO, "Browser started");
+		demoqaHomePage.clickWidget(6);
+		
+		tabs tabsWidget = PageFactory.initElements(driver, tabs.class);
+		tabsWidget.cycleTabs();
+				
+		try {
+			assertEquals("block", tabsWidget.getActiveTab().getCssValue("display"));
+			test9.log(LogStatus.PASS, "Tabs successful");
+		} catch (AssertionError e) {
+			test9.log(LogStatus.FAIL, "Tabs unsuccessful");
+			fail();
+		} finally {
+			test9.log(LogStatus.INFO, "Current URL: " + driver.getCurrentUrl());
+			driver.quit();
 		}
 	}
 	
